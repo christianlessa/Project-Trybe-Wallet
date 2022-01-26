@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { saveLoginAction } from '../actions';
+import '../App.css';
 
-class Login extends Component {
+class Login extends React.Component {
   constructor() {
     super();
 
@@ -13,6 +14,7 @@ class Login extends Component {
         password: '',
       },
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.saveLogin = this.saveLogin.bind(this);
   }
@@ -28,56 +30,47 @@ class Login extends Component {
   }
 
   saveLogin() {
+    const { history, dispatchLogin } = this.props;
     const { user: { email } } = this.state;
-    const { dispatchLogin, history } = this.props;
     dispatchLogin(email);
     history.push('/carteira');
   }
 
   render() {
-    const minLength = 6;
     const { user: { email, password } } = this.state;
+    const SIX = 6;
+    const isDisabled = email.includes('@') && email.includes('.com')
+     && password.length >= SIX;
     return (
-      <div>
-        <p>Email:</p>
-        <input
-          type="email"
-          data-testid="email-input"
-          value={ email }
-          name="email"
-          placeholder="Digite email"
-          onChange={ this.handleChange }
-          required
-        />
-        <p>Password:</p>
-        <input
-          type="text"
-          data-testid="password-input"
-          value={ password }
-          name="password"
-          placeholder="Digite senha"
-          onChange={ this.handleChange }
-          required
-        />
-        <button
-          type="button"
-          onClick={ this.saveLogin }
-          disabled={
-            !(password.length >= minLength
-            && email.includes('@')
-            && email.includes('.com'))
-          }
-        >
-          Entrar
-        </button>
+      <div className="login">
+        <label htmlFor="email">
+          Email:
+          <input
+            data-testid="email-input"
+            name="email"
+            placeholder="Digite seu email"
+            onChange={ this.handleChange }
+          />
+          Senha:
+          <input
+            data-testid="password-input"
+            name="password"
+            placeholder="Digite sua senha"
+            onChange={ this.handleChange }
+          />
+          <button
+            className="buttonLogin"
+            type="button"
+            onClick={ this.saveLogin }
+            disabled={ !isDisabled }
+          >
+            Entrar
+          </button>
+        </label>
       </div>
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  dispatchLogin: (email) => dispatch(saveLoginAction(email)),
-});
 
 Login.propTypes = {
   history: PropTypes.shape({
@@ -85,5 +78,9 @@ Login.propTypes = {
   }).isRequired,
   dispatchLogin: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchLogin: (email) => dispatch(saveLoginAction(email)),
+});
 
 export default connect(null, mapDispatchToProps)(Login);
