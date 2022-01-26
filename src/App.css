@@ -43,20 +43,18 @@
 .form {
   align-items: center;
   background-color: teal;
+  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 25px 10px;
 }
 
 .login {
   align-items: center;
   background-color: teal;
   border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  width: 200px;
+  margin: 150px 480px;
+  padding: 50px;
 }
 
 .buttonLogin {
@@ -73,4 +71,22 @@
   background-color: rgb(154, 211, 55);
   border-color: darkslategray;
   border-radius: 5px;
+}
+
+.tableExpenses {
+  background-color: rgb(29, 44, 44);
+  display: flex;
+  padding: 10px;
+}
+
+.table {
+  color: white;
+  padding-left: 30px;
+}
+
+.email {
+  display: flex;
+  font-family: fantasy;
+  font-size: medium;
+  justify-content: end;
 }

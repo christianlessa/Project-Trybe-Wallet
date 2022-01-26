@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../componentes/Header';
 import FormExpenses from '../componentes/FormExpenses';
+import TableExpenses from '../componentes/TableExpenses';
 import { saveQuotationThunk } from '../actions';
 
 class Wallet extends React.Component {
@@ -36,7 +37,7 @@ class Wallet extends React.Component {
       <div>
         <Header total={ total } />
         <FormExpenses sumExpenses={ this.sumExpenses } />
-        <div>TrybeWallet</div>
+        <TableExpenses />
       </div>
     );
   }
