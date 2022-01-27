@@ -73,20 +73,21 @@
   border-radius: 5px;
 }
 
-.tableExpenses {
+.tableMenu {
   background-color: rgb(29, 44, 44);
-  display: flex;
-  padding: 10px;
+  color: white;
+}
+
+.tableResp {
+  text-align: center;
 }
 
 .table {
-  color: white;
-  padding-left: 30px;
+  padding-left: 25px;
 }
 
 .email {
   display: flex;
-  font-family: fantasy;
-  font-size: medium;
-  justify-content: end;
+  font-size: large;
+  justify-content: flex-end;
 }

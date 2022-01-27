@@ -33,6 +33,7 @@ class FormExpenses extends React.Component {
     const { dispatchExpenses, sumExpenses } = this.props;
     const { id, value, description, currency, method, tag } = this.state;
     const currenciesRates = await currenciesAPI();
+    delete currenciesRates.USDT;
     const expenses = {
       id,
       value,
