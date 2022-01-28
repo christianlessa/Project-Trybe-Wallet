@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../componentes/Header';
-import FormExpenses from '../componentes/FormExpenses';
 import TableExpenses from '../componentes/TableExpenses';
+import FormExpenses from '../componentes/FormExpenses';
 import { saveQuotationThunk } from '../actions';
 
 class Wallet extends React.Component {
@@ -20,7 +20,7 @@ class Wallet extends React.Component {
     dispatchCurrencies();
   }
 
-  sumExpenses = () => {
+  sumExpenses = (sumExp) => {
     const { expenses } = this.props;
     let sumTotal = 0;
     expenses.forEach((expense) => {
@@ -29,13 +29,14 @@ class Wallet extends React.Component {
       sumTotal += Number(rates) * Number(expCurr);
     });
     this.setState({ total: sumTotal });
+    if (sumExp) { this.setState((prevState) => ({ total: prevState.total - sumExp })); }
   };
 
   render() {
     const { total } = this.state;
     return (
       <div>
-        <Header total={ total } />
+        <Header total={ total } sumExpenses={ this.sumExpenses } />
         <FormExpenses sumExpenses={ this.sumExpenses } />
         <TableExpenses sumExpenses={ this.sumExpenses } />
       </div>
@@ -48,7 +49,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchCurrencies: (payload) => dispatch(saveQuotationThunk(payload)),
+  dispatchCurrencies: () => dispatch(saveQuotationThunk()),
 });
 
 Wallet.propTypes = {
