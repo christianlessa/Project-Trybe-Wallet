@@ -4,7 +4,8 @@ import currenciesAPI from '../currenciesAPI';
 export const LOGIN_SAVE = 'LOGIN_SAVE';
 export const SAVE_EXPENSES = 'SAVE_EXPENSE';
 export const SAVE_QUOTATION = 'SAVE_QUOTATION';
-export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_DELETE_EXPENSE = 'EDIT_DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export function saveLoginAction(email) {
   return {
@@ -20,10 +21,17 @@ export function saveExpenseAction(expense) {
   };
 }
 
-export function deleteExpenseAction(filterExpense) {
+export function editDeleteExpenseAction(filterExpense) {
   return {
-    type: DELETE_EXPENSE,
+    type: EDIT_DELETE_EXPENSE,
     payload: filterExpense,
+  };
+}
+
+export function editExpenseAction(expense) {
+  return {
+    type: EDIT_EXPENSE,
+    expense,
   };
 }
 

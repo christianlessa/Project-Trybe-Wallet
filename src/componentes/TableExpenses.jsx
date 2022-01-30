@@ -2,18 +2,26 @@ import React from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpenseAction } from '../actions';
+import { editDeleteExpenseAction, editExpenseAction } from '../actions';
 
 class TableExpenses extends React.Component {
   constructor() {
     super();
     this.deleteExpense = this.deleteExpense.bind(this);
+    this.editExpense = this.editExpense.bind(this);
   }
 
   deleteExpense(id) {
-    const { expenses, dispatchRemoveExpense } = this.props;
+    const { expenses, dispatchEditRemoveExpense } = this.props;
     const filterExpenses = expenses.filter((expense) => expense.id !== id);
-    dispatchRemoveExpense(filterExpenses);
+    dispatchEditRemoveExpense(filterExpenses);
+  }
+
+  editExpense(id) {
+    const { expenses, dispatchEditExpense } = this.props;
+    const indexEdit = expenses.findIndex((expense) => expense.id === id);
+    const expense = expenses[indexEdit];
+    dispatchEditExpense(expense);
   }
 
   render() {
@@ -56,6 +64,13 @@ class TableExpenses extends React.Component {
                     <td>Real</td>
                     <td>
                       <button
+                        data-testid="edit-btn"
+                        type="button"
+                        onClick={ () => { this.editExpense(id); } }
+                      >
+                        Editar despesa
+                      </button>
+                      <button
                         type="button"
                         data-testid="delete-btn"
                         onClick={ () => {
@@ -82,13 +97,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchRemoveExpense:
-   (id) => dispatch(deleteExpenseAction(id)),
+  dispatchEditRemoveExpense:
+   (id) => dispatch(editDeleteExpenseAction(id)),
+  dispatchEditExpense: (expense) => dispatch(editExpenseAction(expense)),
 });
 
 TableExpenses.propTypes = {
   expenses: PropTypes.arrayOf(Object).isRequired,
-  dispatchRemoveExpense: PropTypes.func.isRequired,
+  dispatchEditExpense: PropTypes.func.isRequired,
+  dispatchEditRemoveExpense: PropTypes.func.isRequired,
   sumExpenses: PropTypes.func.isRequired,
 };
 
