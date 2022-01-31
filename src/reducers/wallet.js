@@ -13,17 +13,17 @@ const wallet = (state = INITIAL_STATE, action) => {
   case SAVE_EXPENSES:
     return {
       ...state,
-      expenses: [...state.expenses, action.payload],
+      expenses: [...state.expenses, action.expenses],
     };
   case SAVE_QUOTATION:
     return {
       ...state,
-      currencies: action.payload,
+      currencies: action.quotation,
     };
   case EDIT_DELETE_EXPENSE:
     return {
       ...state,
-      expenses: action.payload,
+      expenses: [...action.expenses],
     };
   case EDIT_EXPENSE:
     return {

@@ -2,13 +2,12 @@ import React from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { editDeleteExpenseAction, editExpenseAction } from '../actions';
+import { editDeleteExpenseAction } from '../actions';
 
 class TableExpenses extends React.Component {
   constructor() {
     super();
     this.deleteExpense = this.deleteExpense.bind(this);
-    this.editExpense = this.editExpense.bind(this);
   }
 
   deleteExpense(id) {
@@ -17,15 +16,8 @@ class TableExpenses extends React.Component {
     dispatchEditRemoveExpense(filterExpenses);
   }
 
-  editExpense(id) {
-    const { expenses, dispatchEditExpense } = this.props;
-    const indexEdit = expenses.findIndex((expense) => expense.id === id);
-    const expense = expenses[indexEdit];
-    dispatchEditExpense(expense);
-  }
-
   render() {
-    const { expenses, sumExpenses } = this.props;
+    const { editExpense, expenses } = this.props;
     return (
       <header>
         <table>
@@ -66,16 +58,15 @@ class TableExpenses extends React.Component {
                       <button
                         data-testid="edit-btn"
                         type="button"
-                        onClick={ () => { this.editExpense(id); } }
+                        onClick={ () => { editExpense(id); } }
                       >
-                        Editar despesa
+                        Editar
                       </button>
                       <button
                         type="button"
                         data-testid="delete-btn"
                         onClick={ () => {
                           this.deleteExpense(id);
-                          sumExpenses(sumExp);
                         } }
                       >
                         Remover
@@ -99,14 +90,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   dispatchEditRemoveExpense:
    (id) => dispatch(editDeleteExpenseAction(id)),
-  dispatchEditExpense: (expense) => dispatch(editExpenseAction(expense)),
 });
 
 TableExpenses.propTypes = {
   expenses: PropTypes.arrayOf(Object).isRequired,
-  dispatchEditExpense: PropTypes.func.isRequired,
   dispatchEditRemoveExpense: PropTypes.func.isRequired,
-  sumExpenses: PropTypes.func.isRequired,
+  editExpense: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableExpenses);

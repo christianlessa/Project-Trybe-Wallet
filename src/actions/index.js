@@ -10,21 +10,21 @@ export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 export function saveLoginAction(email) {
   return {
     type: LOGIN_SAVE,
-    payload: email,
+    email,
   };
 }
 
-export function saveExpenseAction(expense) {
+export function saveExpenseAction(expenses) {
   return {
     type: SAVE_EXPENSES,
-    payload: expense,
+    expenses,
   };
 }
 
-export function editDeleteExpenseAction(filterExpense) {
+export function editDeleteExpenseAction(expenses) {
   return {
     type: EDIT_DELETE_EXPENSE,
-    payload: filterExpense,
+    expenses,
   };
 }
 
@@ -38,7 +38,7 @@ export function editExpenseAction(expense) {
 export function saveQuotationAction(quotation) {
   return {
     type: SAVE_QUOTATION,
-    payload: quotation,
+    quotation,
   };
 }
 

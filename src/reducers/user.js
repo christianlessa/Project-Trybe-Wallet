@@ -10,7 +10,7 @@ const user = (state = INITIAL_STATE, action) => {
   case LOGIN_SAVE:
     return {
       ...state,
-      email: action.payload,
+      email: action.email,
     };
   default:
     return state;
