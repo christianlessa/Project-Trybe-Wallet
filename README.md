@@ -1,10 +1,23 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Boas vindas ao repositório do projeto Trybe Wallet!
+
+ - **Projeto de criação de tabela de para adicionar, editar e deletar despesas, com tela de login**
+
+---
+
+# Full Stack
+
+<details>
+  <summary>
+    <strong>Habilidades</strong>
+  </summary><br>
+
+  - **Tecnologias utilizadas em front-end:** JavaScript, React, React Redux e estilização em CSS
+</details>
+
+<details>
+  <summary>
+    <strong>Como executar o projeto</strong>
+  </summary><br>
+  
+  - **Dentro da pasta do projeto, execute o comando "npm run start":**
+</details>
